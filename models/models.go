@@ -38,3 +38,34 @@ type StoreLocation struct {
 type Error struct {
 	Message string `json:"message,omitempty"`
 }
+
+//StoreQueryRequest represents store locator query request
+type StoreQueryRequest struct {
+	Lat    float64 `json:"latitude,omitempty"`
+	Lon    float64 `json:"longitude,omitempty"`
+	Radius string  `json:"radius,omitempty"`
+	SapID  string  `json:"sap_id,omitempty"`
+}
+
+//StoreQueryResponse represents response from store query
+type StoreQueryResponse struct {
+	Hits         int64         `json:"count,omitempty"`
+	TookInMillis int64         `json:"took_in_millis,omitempty"`
+	Stores       []StoreRecord `json:"stores,omitempty"`
+	Errors       []Error       `json:"errors,omitempty"`
+}
+
+//IndexerResponse represents response from indexing request
+type IndexerResponse struct {
+	IndexName           string        `json:"index_name,omitempty"`
+	StoresIndexed       []StoreRecord `json:"stores_indexed,omitempty"`
+	StoresFailedToIndex []StoreRecord `json:"stores_failed_to_index,omitempty"`
+}
+
+//Index represents elastic search index for stores
+type Index struct {
+	Name             string  `json:"name,omitempty"`
+	NumberOfShards   int     `json:"number_of_shards,omitempty"`
+	NumberOfReplicas int     `json:"number_of_replicas,omitempty"`
+	Errors           []Error `json:"errors,omitempty"`
+}

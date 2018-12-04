@@ -8,6 +8,7 @@ import (
 
 	"github.com/olivere/elastic"
 	"github.com/prometheus/common/log"
+	"github.com/storefinder/pkg/models"
 )
 
 //Proxy elastic search proxy
