@@ -33,3 +33,8 @@ type StoreLocation struct {
 	Latitude  float64 `json:"lat,omitempty"`
 	Longitude float64 `json:"lon,omitempty"`
 }
+
+//Error represents error
+type Error struct {
+	Message string `json:"message,omitempty"`
+}
