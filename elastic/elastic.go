@@ -81,6 +81,8 @@ func (p *Proxy) Index(indexName string, storesToIndex []models.StoreRecord) *mod
 	var storesIndexed []models.StoreRecord
 	var storesNotIndexed []models.StoreRecord
 
+	log.Infof("Adding docs to index %s", indexName)
+
 	for _, store := range storesToIndex {
 		//Marshal to JSON
 		storeRecord, err := json.Marshal(store)
@@ -92,11 +94,12 @@ func (p *Proxy) Index(indexName string, storesToIndex []models.StoreRecord) *mod
 			BodyJson(storeRecord).
 			Do(p.context)
 		if err != nil {
-			log.Infof("Error adding store record for store code %s to index : %v", store.StoreCode, err)
+			log.Infof("Error adding store record for store code %s to index : %s %v", store.StoreCode, indexName, err)
 			storesNotIndexed = append(storesNotIndexed, store)
+		} else {
+			log.Infof("Added store %s to index %s", result.Id, result.Index)
+			storesIndexed = append(storesIndexed, store)
 		}
-		log.Infof("Added store %s to index %s", result.Id, result.Index)
-		storesIndexed = append(storesIndexed, store)
 	}
 	return &models.IndexerResponse{
 		IndexName:           indexName,
