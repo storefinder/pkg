@@ -2,36 +2,36 @@ package models
 
 //StoreRecord represents a record in Stores table
 type StoreRecord struct {
-	StoreCode       string         `json:"store_code,omitempty"`
-	BusinessName    string         `json:"business_name,omitempty"`
-	Address1        string         `json:"address_1,omitempty"`
-	Address2        string         `json:"address_2,omitempty"`
-	City            string         `json:"city,omitempty"`
-	State           string         `json:"state,omitempty"`
-	PostalCode      string         `json:"postal_code,omitempty"`
-	Country         string         `json:"country,omitempty"`
-	PrimaryPhone    string         `json:"primary_phone,omitempty"`
-	Website         string         `json:"website,omitempty"`
-	Description     string         `json:"description,omitempty"`
-	PaymentTypes    string         `json:"payment_types,omitempty"`
-	PrimaryCategory string         `json:"primary_category,omitempty"`
-	Photo           string         `json:"photo,omitempty"`
-	Hours           []*StoreHour   `json:"store_hours,omitempty"`
-	Location        *StoreLocation `json:"location,omitempty"`
-	SapID           string         `json:"sap_id,omitempty"`
+	StoreCode       string        `json:"store_code"`
+	BusinessName    string        `json:"business_name"`
+	Address1        string        `json:"address_1"`
+	Address2        string        `json:"address_2"`
+	City            string        `json:"city"`
+	State           string        `json:"state"`
+	PostalCode      string        `json:"postal_code"`
+	Country         string        `json:"country"`
+	PrimaryPhone    string        `json:"primary_phone"`
+	Website         string        `json:"website"`
+	Description     string        `json:"description"`
+	PaymentTypes    string        `json:"payment_types"`
+	PrimaryCategory string        `json:"primary_category"`
+	Photo           string        `json:"photo"`
+	Hours           []StoreHour   `json:"store_hours"`
+	Location        StoreLocation `json:"location"`
+	SapID           string        `json:"sap_id"`
 }
 
 //StoreHour represents store hours of operation
 type StoreHour struct {
-	DayOfWeek string `json:"day_of_week,omitempty"`
-	OpenTime  string `json:"open_time,omitempty"`
-	CloseTime string `json:"close_time,omitempty"`
+	DayOfWeek string `json:"day_of_week"`
+	OpenTime  string `json:"open_time"`
+	CloseTime string `json:"close_time"`
 }
 
 //StoreLocation represents store location
 type StoreLocation struct {
-	Latitude  float64 `json:"lat,omitempty"`
-	Longitude float64 `json:"lon,omitempty"`
+	Latitude  float64 `json:"lat"`
+	Longitude float64 `json:"lon"`
 }
 
 //Error represents error
