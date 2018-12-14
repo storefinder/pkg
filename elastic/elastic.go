@@ -81,15 +81,15 @@ func (p *Proxy) Index(indexName string, storesToIndex []models.StoreRecord) *mod
 	var storesIndexed []models.StoreRecord
 	var storesNotIndexed []models.StoreRecord
 
-	log.Infof("Adding docs to index %s", indexName)
+	log.Infof("Adding %v documents to index %s", len(storesToIndex), indexName)
 
 	for _, store := range storesToIndex {
 		//Marshal to JSON
 		storeRecord, err := json.Marshal(store)
 		if err != nil {
-			log.Warnf("Error unmarshalling : %v", err)
+			log.Warnf("Error unmarshalling: %v", err)
 		} else {
-			log.Infof("Store %s", storeRecord)
+			log.Infof("Store: %s", storeRecord)
 		}
 
 		//index the doc
