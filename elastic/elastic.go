@@ -82,7 +82,7 @@ func (p *Proxy) Index(indexName string, storesToIndex []models.StoreRecord) *mod
 	var storesNotIndexed []models.StoreRecord
 
 	for _, store := range storesToIndex {
-		log.Info("Adding store %s document to %s index", store.StoreCode, indexName)
+		log.Infof("Adding store %s document to %s index", store.StoreCode, indexName)
 		//index the doc
 		result, err := p.client.Index().
 			Index(indexName).
