@@ -86,6 +86,12 @@ func (p *Proxy) Index(indexName string, storesToIndex []models.StoreRecord) *mod
 	for _, store := range storesToIndex {
 		//Marshal to JSON
 		storeRecord, err := json.Marshal(store)
+		if err != nil {
+			log.Warnf("Error unmarshalling : %v", err)
+		} else {
+			log.Infof("Store %s", storeRecord)
+		}
+
 		//index the doc
 		result, err := p.client.Index().
 			Index(indexName).
