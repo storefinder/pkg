@@ -47,7 +47,9 @@ func NewProxy(config ProxyConfig) *Proxy {
 
 //CreateIndex creates an elastic search index
 func (p *Proxy) CreateIndex(indexName string, mapping string) error {
-	exists, _ := p.client.IndexExists(indexName).Do(p.context)
+	exists, _ := p.client.
+		IndexExists(indexName).
+		Do(p.context)
 	if !exists {
 		result, err := p.client.CreateIndex(indexName).
 			BodyString(mapping).
@@ -149,4 +151,10 @@ func (p *Proxy) Search(request models.StoreQueryRequest, indexName string) (*mod
 		TookInMillis: results.TookInMillis,
 		Stores:       stores,
 	}, nil
+}
+
+//Stats returns cluster stats
+func (p *Proxy) Stats() (*elastic.ClusterStatsResponse, error) {
+	service := elastic.NewClusterStatsService(p.client)
+	return service.Do(p.context)
 }
